@@ -4,10 +4,9 @@ import java.util.*;
 /** clase Agenda que contiene una lista de contacto y métodos para añadir o eliminar contactos y modificar el numero de telefono de un contacto conreto
  * @author NoraSbakhi
  * version 1.0 29/02/2024
- * @see Contacto*/
-public class Agenda
-{
-    private List<Contacto> contacts; // Lista de Contacto
+ * @see Persona */
+public class Agenda implements newAgenda {
+    private List<Persona> contacts; // Lista de Persona
 
     /**  con este método llamamos a la lista de contactos de la clase contactos */
     public Agenda()
@@ -17,8 +16,9 @@ public class Agenda
     /** Este método se encarga de agregar un contacto a una lista de contactos (contacts).
     * Si el nombre del contacto ya existe en la lista,
      *se agrega el número de teléfono proporcionado a la lista de números de teléfono del contacto existente.
-     *Si el nombre no existe en la lista, se crea un nuevo objeto Contacto con el nombre y el número de teléfono proporcionados,
+     *Si el nombre no existe en la lista, se crea un nuevo objeto Persona con el nombre y el número de teléfono proporcionados,
      *y se agrega a la lista.*/
+    @Override
     public void addContact(String name, String phone)
     {
     /* inicializa una variable bolleana "exixst" como falso
@@ -28,7 +28,7 @@ public class Agenda
       una vez encontrado y actualiado el numebro se rompe el bucle. */
         boolean exists = false;
 
-        for (Contacto c : contacts)
+        for (Persona c : contacts)
         {
             if (c.getName().equalsIgnoreCase(name))
             {
@@ -38,11 +38,11 @@ public class Agenda
             }
         }
     /* despues de salir del bucle, se verifica si "exist" es falso (es decir, si el nombre no existe en la lista).
-       Si el nombre no existe, se crea un nuevo objeto 'Contacto' con el nombre y el número de teléfono proporcionados.
+       Si el nombre no existe, se crea un nuevo objeto 'Persona' con el nombre y el número de teléfono proporcionados.
       y se agrega el nuevo contacto a la lista 'contacts'.*/
         if (!exists)
         {
-            Contacto newContact = new Contacto(name, phone);
+            Persona newContact = new Persona(name, phone);
             contacts.add(newContact);
         }
     }
@@ -50,13 +50,14 @@ public class Agenda
  * utuliza un iterador para recorrer la lista
  * elimina un contacto de la lista basándose en el nombre proporcionado.
  * Si hay varios contactos con el mismo nombre, eliminará todos ellos de la lista.*/
+    @Override
     public void removeContact(String name)
     {
-        Iterator<Contacto> it = contacts.iterator();// este es el iterador que recorre la lista contactos.
+        Iterator<Persona> it = contacts.iterator();// este es el iterador que recorre la lista contactos.
 
         while (it.hasNext()) // se recorre lalista mientras haya elementos no repetidos */
         {
-            Contacto c = it.next();// se obtiene el proximo elemento de la lista a traves del iterador*/
+            Persona c = it.next();// se obtiene el proximo elemento de la lista a traves del iterador*/
 
             if (c.getName().equalsIgnoreCase(name)) /*  se verifica si el nombre del contacto actrual es igaul al nombre proporciaonado,
                                                         ignorando mayusculas y minusuculas*/
@@ -67,9 +68,10 @@ public class Agenda
     }
  /** Este método se encarga de modificar el número de teléfono de un contacto en la lista de contactos.
   *  Si el contacto o el antiguo número de teléfono no se encuentran, no se realiza ninguna modificación.*/
+    @Override
     public void modifyPhoneNumber(String name, String oldPhone, String newPhone)
     {
-        for (Contacto c : contacts) //  Se recorre la lista de contactos 'contacts' utilizando un bucle for-each.*/
+        for (Persona c : contacts) //  Se recorre la lista de contactos 'contacts' utilizando un bucle for-each.*/
         {
             if (c.getName().equalsIgnoreCase(name)) /*  Se verifica si el nombre del contacto actual (c) es igual al nombre proporcionado
                                                             (ignorando mayúsculas/minúsculas).*/
@@ -88,7 +90,8 @@ public class Agenda
         }
     }
 /** @return Devuelve la lista de contactos asociada a la instancia actual de la clase.*/
-    public List<Contacto> getContacts()
+    @Override
+    public List<Persona> getContacts()
     {
         return this.contacts;
     }
