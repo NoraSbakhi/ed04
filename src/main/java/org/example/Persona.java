@@ -13,8 +13,8 @@ public class Persona
 /** constructos para la clase contacto, asigna un atributo nombre y teléfono
  * primero asigan el nombre al atributo noame, luego inicializa el atributo
  * como una nueva instancia y fianlemnte agrega el numeor de telfono proporcionado a la lista phones
- * @param name
- *  @param phone */
+ * @param name parametro de name
+ *  @param phone parametro de número de telefono*/
 
     public Persona(String name, String phone)
 
